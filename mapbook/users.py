@@ -9,4 +9,9 @@ users: list = [
     {'name': 'Kinga', 'posts': 25, 'city': 'Toruń'},
     {'name': 'Amelia', 'posts': 32, 'city': 'Bydgoszcz'},
     {'name': 'Karolina', 'posts': 20, 'city': 'Zamość'},
+    {'name': 'Julka', 'posts': 4, 'city': 'Łódź'},
+    {'name': 'Ola', 'posts': 25, 'city': 'Toruń'},
+    {'name': 'Patrycja', 'posts': 32, 'city': 'Bydgoszcz'},
+    {'name': 'Patrycja', 'posts': 20, 'city': 'Zamość'},
+    {'name': 'Patrycja', 'posts': 20, 'city': 'Zamość'},
 ]
