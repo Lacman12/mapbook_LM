@@ -10,10 +10,7 @@ users: list = [
     {'name': 'Amelia', 'posts': 32, 'city': 'Bydgoszcz'},
     {'name': 'Karolina', 'posts': 20, 'city': 'Zamość'},
 
-
-
 ]  # typizacja zmiennych bedzie przechowywac liste
-#TODO please update user list
 
 print(f'Witaj {users[0]['name']}!!')
 for user in users[1:]:#wybiera wszystkich oprócz 0, ważny : po numerze
