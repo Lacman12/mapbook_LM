@@ -6,6 +6,8 @@ users: list = [
     {'name': 'Patryk', 'posts': 9, 'city': 'Kielce'},
 
 ]  # typizacja zmiennych bedzie przechowywac liste
+#TODO please update user list
+
 print(f'Witaj {users[0]['name']}!!')
 for user in users[1:]:#wybiera wszystkich oprócz 0, ważny : po numerze
    print(f'twój znajomy {user['name']},z miasta {user['city']} opublikował {user['posts']} postów')# f oznacza format - zastepuje to co jest w nawasie zmienną
