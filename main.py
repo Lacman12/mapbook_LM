@@ -35,7 +35,7 @@ def main():
             ]
     users = [
          #User('Kasia', 'Nowak', '7', 'Warszawa'),
-         #User('Adam', 'Kowalski', '4', 'Wrocław'),
+         #User('Adam', 'Kowalski', '4', 'Wrocław' ),
 
     ]
 
