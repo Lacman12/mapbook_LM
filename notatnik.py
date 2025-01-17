@@ -1,24 +1,16 @@
-from tkinter.font import names
+import psycopg2 as ps
+
+db_params=ps.connect(user='aaaaaaa',password='aaaaaaa',host='localhost',database='aaaaaaa' ,port='5434')
 
 
-users: list = [
-    {'name': 'Dominik', 'posts': 1, 'city': 'Poznań'},
-    {'name': 'Julia', 'posts': 1, 'city': 'Zamość'},
-    {'name': 'Patryk', 'posts': 11, 'city': 'Łódź'},
-    {'name': 'Patrycja', 'posts': 11, 'city': 'Zielona_Góra'},
-]
-class User:
-    def __init__(self, imie,nazwisko,posts,lokalizacja):
-        self.imie = imie
-        self.nazwisko = nazwisko
-        self.posts = posts
-        self.lokalizacja = lokalizacja
 
+cursor=db_params.cursor()
+query="SELECT name,surname,posts,location,st_astext(cords),id FROM public.users ORDER BY id ASC"
+cursor.execute(query)
+users=cursor.fetchall()
+cursor.close()
 
-user_Marek=User('Marek','a','3','a')
-
-print(user_Marek.imie)
-print(user_Marek.nazwisko)
-print(user_Marek.posts)
-print(user_Marek.lokalizacja)
-
+#print(users)
+for user in users:
+    print(float(users[4][6:-1].split()[0]))
+    print(float(users[4][6:-1].split()[1]))

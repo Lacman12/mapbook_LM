@@ -7,16 +7,19 @@ import tkintermapview
 
 # class BeautifulSoup:
 #  pass
+import psycopg2 as ps
+
+db_params=ps.connect(user='aaaaaaa',password='aaaaaaa',host='localhost',database='aaaaaaa' ,port='5434')
 
 
 def main():
     class User:
-        def __init__(self, imie, nazwisko, postow, lokalizacja):
+        def __init__(self, imie, nazwisko, postow, lokalizacja,coordinates):
             self.imie = imie
             self.nazwisko = nazwisko
             self.postow = postow
             self.lokalizacja = lokalizacja
-            self.coords: list = User.get_coordinates(self)
+            self.coords: list = coordinates #User.get_coordinates(self)
             self.marker = map_widget.set_marker(
                self.coords[0],
                self.coords[1],
@@ -40,9 +43,16 @@ def main():
     ]
 
     def show_users():
+        cursor = db_params.cursor()
+        query = "SELECT name,surname,posts,location,st_astext(cords),id FROM public.users ORDER BY id ASC"
+        cursor.execute(query)
+        users_db = cursor.fetchall()
+        cursor.close()
+
         listbox_lista_obiektow.delete(0, END)
-        for idx, user in enumerate(users):
-            listbox_lista_obiektow.insert(idx, f'{user.imie} {user.nazwisko} {user.postow} {user.lokalizacja}')
+        for idx, user in enumerate(users_db):
+            User(user[0], user[1], user[2], user[3], [float(users[4][6:-1].split()[1])],float(users[4][6:-1].split()[0])),
+            listbox_lista_obiektow.insert(idx, f'{user[0]} {user[1]} {user[2]} {user[3]}')
 
     def add_user() -> None:
         name = entry_imie.get()
@@ -50,7 +60,7 @@ def main():
         posts = entry_liczba_postow.get()
         location = entry_lokalizacja.get()
 
-        new_user = User(name, surname, posts, location)
+        new_user = User(name, surname, posts, location,coordinates=[11.0,20.1])
 
         users.append(new_user)
         show_users()
